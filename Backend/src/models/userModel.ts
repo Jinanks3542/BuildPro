@@ -1,7 +1,7 @@
 import mongoose, {Schema, Document} from "mongoose";
-import type {UserDocument} from '../interfaces/models/user.interface.ts'
+import type {IUserDocument} from '../interfaces/models/user.interface.ts'
 
-const UserSchema = new Schema<UserDocument>(
+const UserSchema = new Schema<IUserDocument>(
     {
     name: {
       type: String,
@@ -44,5 +44,5 @@ const UserSchema = new Schema<UserDocument>(
     { timestamps: true },
 )
 
-const UserModel = mongoose.model<UserDocument>('User', UserSchema);
+const UserModel = mongoose.model<IUserDocument>('User', UserSchema);
 export default UserModel;

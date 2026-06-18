@@ -1,12 +1,13 @@
-import Signup from './pages/user/auth/Signup.tsx'
-import OtpModal from './pages/user/auth/verifyOtp.tsx'
+import { Routes, Route} from "react-router-dom"
+import UserRoutes from "./routes/userRoutes"
+import AdminRoutes from "./routes/adminRoutes"
 
 function App() {
   return (
-    <div>
-      <Signup/>
-      {/* <OtpModal/> */}
-    </div>
+    <Routes>
+      <Route path="/*" element={<UserRoutes/>}/>
+      <Route path="/admin/*" element={<AdminRoutes />} />
+    </Routes>
   )
 }
 

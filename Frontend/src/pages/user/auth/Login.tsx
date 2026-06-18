@@ -1,4 +1,4 @@
-// import loginImg from "./assets/loginImg";
+// import signupImg from "../../../assets/signupImg.jpg";
 // import { FcGoogle } from "react-icons/fc";
 // import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 // import { useState } from "react";
@@ -12,7 +12,7 @@
 //       {/* ── LEFT PANEL ── */}
 //       <div className="hidden lg:block relative w-1/2 h-full">
 //         <img
-//           src={loginImg}
+//           src={signupImg}
 //           alt="Construction site"
 //           className="absolute inset-0 w-full h-full object-cover"
 //         />
@@ -175,3 +175,49 @@
 //     </div>
 //   );
 // }
+
+import { useNavigate } from "react-router-dom";
+import AuthLeftPanel from "../../../components/auth/authLeftPanel";
+import UserLoginForm from "../../../components/auth/userLoginForm";
+
+import { useAppDispatch } from "../../../store/hooks";
+import { loginUserService } from "../../../services/auth.service";
+
+import type {  LoginRequest } from "../../../types/auth.types";
+
+export default function LoginPage(){
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
+
+    const handleLogin = async(
+        data: LoginRequest
+    ): Promise<void> =>{
+        try {
+            const result = await loginUserService(
+                dispatch,
+                data
+            )
+
+            navigate(
+                result.nextRoute
+            )
+        } catch (error) {
+            console.error(error)
+        }
+        
+    }
+
+    return (
+    <div className="flex h-screen overflow-hidden">
+      <AuthLeftPanel />
+
+      <div className="flex flex-1 items-center justify-center bg-gray-50">
+        <UserLoginForm
+          onSubmit={handleLogin}
+        />
+      </div>
+    </div>
+  );
+}
+
+

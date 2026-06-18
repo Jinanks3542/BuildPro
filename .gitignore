@@ -9,9 +9,13 @@ lerna-debug.log*
 
 # Dependencies
 node_modules/
+Backend/node_modules/
+Frontend/node_modules/
 
 # Environment variables
 .env
+Backend/.env
+Frontend/.env
 *.local
 
 # Build files

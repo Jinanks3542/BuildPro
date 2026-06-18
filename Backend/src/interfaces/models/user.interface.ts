@@ -1,16 +1,17 @@
 import {Document, Types} from 'mongoose'
+import type { AuthProvider } from '../common/commonInterface';
 
 
-export interface UserDocument extends Document{
+export interface IUserDocument extends Document{
     _id: Types.ObjectId;
     name:string;
     email:string;
     password:string;
-    username: string;
     phone?: string;
     profilePicture?: string;
     isBlocked: boolean;
     isVerified: boolean;
+    providers: AuthProvider[]
 
     createdAt: Date;
     updatedAt: Date;
